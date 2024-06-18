@@ -13,16 +13,13 @@ const testServerUrls = {
   'e': 'http://20.244.56.144/test/even',
   'r': 'http://20.244.56.144/test/rand',
 };
-
-// Set your access token here
 const ACCESS_TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJNYXBDbGFpbXMiOnsiZXhwIjoxNzE4NjkyMDE5LCJpYXQiOjE3MTg2OTE3MTksImlzcyI6IkFmZm9yZG1lZCIsImp0aSI6IjUwOWViYmI5LWM4MjgtNDkxMy04OTk3LTAyNjNkMDQzZGVhYyIsInN1YiI6ImFydW11Z2FtYWsuMjFjc2VAa29uZ3UuZWR1In0sImNvbXBhbnlOYW1lIjoiQWZmb2VkbWVkIiwiY2xpZW50SUQiOiI1MDllYmJiOS1jODI4LTQ5MTMtODk5Ny0wMjYzZDA0M2RlYWMiLCJjbGllbnRTZWNyZXQiOiJTQk1yVU9Zc09OYU5uZkdaIiwib3duZXJOYW1lIjoiQXJ1bXVnYW0gQUsiLCJvd25lckVtYWlsIjoiYXJ1bXVnYW1hay4yMWNzZUBrb25ndS5lZHUiLCJyb2xsTm8iOiIyMUNTUjAwOSJ9.eiXoSTXuS2glR-DoGp4RmvFBVybDdfzcMyRHcoG-CUQ";
 async function fetchNumbers(type) {
     try {
       const source = axios.CancelToken.source();
       const timeout = setTimeout(() => {
         source.cancel();
-      }, 2000);  // Increased timeout to 2000 ms (2 seconds)
-  
+      }, 2000); 
       const response = await axios.get(testServerUrls[type], {
         cancelToken: source.token,
         headers: {
@@ -37,8 +34,7 @@ async function fetchNumbers(type) {
         console.log(`Request canceled for ${type}`);
       } else {
         console.error(`Error fetching ${type} numbers: `, error.message);
-  
-        // Log additional error details
+
         if (error.response) {
           console.error('Status:', error.response.status);
           console.error('Headers:', error.response.headers);
